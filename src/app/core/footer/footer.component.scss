@@ -1,0 +1,54 @@
+.footer {
+    background-color: #333;
+    padding: 5rem 10rem;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: goldenrod;
+  
+   
+  
+    &__logo-box {
+      text-align: center;
+      font-weight: bolder;
+      color: white;
+      text-transform: uppercase;
+      
+    }
+  
+    &__logo {
+      width: 7rem;
+      height: auto;
+    }
+  
+    
+  
+    &__copyright {
+      color: goldenrod;
+      border-top: 1px solid gray;
+      padding-top: 2rem;
+     
+      float: right;
+      text-align: justify;
+    }
+  
+    @media (max-width: 800px) {
+      padding: 8rem 0;
+      &__navigation {
+        width: 100% !important;
+        text-align: center;
+      }
+  
+      &__copyright {
+        margin: 0 1rem;
+        width: 95%;
+        text-align: justify;
+      }
+  
+      &__title {
+        font-size: 2rem;
+      }
+    }
+  }
+  
