@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PrescriptionComponent } from './prescription.component';
+import { RxRoutingModule } from './rx-routing.module';
 
 
 
@@ -9,7 +10,9 @@ import { PrescriptionComponent } from './prescription.component';
     PrescriptionComponent
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    RxRoutingModule
+  ],
+  exports: [PrescriptionComponent]
 })
 export class PrescriptionModule { }

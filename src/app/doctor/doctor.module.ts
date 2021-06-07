@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DoctorComponent } from './doctor.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DoctorRoutingModule } from './doctor-routing.module';
 
 
 
@@ -11,7 +12,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     DashboardComponent
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    DoctorRoutingModule
+  ],
+  exports:[DoctorComponent]
 })
 export class DoctorModule { }

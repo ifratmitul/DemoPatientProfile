@@ -81,7 +81,8 @@
     &__icon {
       height: 2rem;
       width: 2rem;
-      fill: #f0eeee;
+      fill: #ccc;
+
     }
   }
   
@@ -110,17 +111,17 @@
     &__icon {
       height: 2.25rem;
       width: 2.25rem;
-      fill: #ccc;
+      fill: rgb(75, 72, 72);
     }
   
     &__notification {
-      font-size: 0.8rem;
-      height: 1.75rem;
+      font-size: 1.2rem;
+      height: 2rem;
       width: 1.75rem;
       border-radius: 50%;
       background-color: #63bb8f;
       position: absolute;
-      top: 1.5rem;
+      top: 1.7rem;
       right: 1.1rem;
       display: flex;
       justify-content: center;

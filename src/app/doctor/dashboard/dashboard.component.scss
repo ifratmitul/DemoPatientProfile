@@ -1,0 +1,59 @@
+.container {
+    max-width: 110rem;
+    margin: 8rem auto;
+    background-color: transparent;
+
+    // box-shadow: var(--Shadow);
+    min-height: 60rem;
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+    
+  }
+
+
+.dashboad-option{
+
+    background-color: white;
+    height: 20rem;
+    width: 30rem;
+    border-radius: 2%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: gray;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.3s;
+
+    &__icon-box{
+        
+    }
+
+    &__icon{
+        height: 8rem;
+        width: 8rem;
+        fill: #ccc;
+        justify-content: center;
+
+    }
+    &__text{
+
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.4rem;
+
+    }
+
+    &:hover {
+        transform: translateY(-0.4rem);
+    }
+    &:active {
+        transform: translateY(0.3rem);
+    }
+
+}
+
+
+
