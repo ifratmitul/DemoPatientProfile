@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrescriptionComponent implements OnInit {
 
+  age : number = 18;
   constructor() { }
 
   ngOnInit(): void {

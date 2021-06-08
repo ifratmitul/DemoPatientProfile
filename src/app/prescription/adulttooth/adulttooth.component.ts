@@ -12,4 +12,11 @@ export class AdulttoothComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  fillTooth(id:number){
+    console.log(id);
+    console.log("heelo");
+    
+    
+  }
+
 }

@@ -4,14 +4,19 @@
             Prescription
         </h4>
     </div>
-<div class="tooth">
-    <div class="toothsetA">
+<div class="tooth" *ngIf = "age !== null">
+    <div class="toothsetA" *ngIf="age >=18;else kidstooth">
         <app-adulttooth></app-adulttooth>
+        
+
     </div>
 
-    <div class="toothsetB">
-        <app-kidstooth></app-kidstooth>
+    <div class="toosetB">
+        <ng-template #kidstooth>
+            <app-kidstooth></app-kidstooth>
+        </ng-template>
     </div>
+
 
 </div>
     
