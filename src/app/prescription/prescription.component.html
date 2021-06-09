@@ -4,20 +4,49 @@
             Prescription
         </h4>
     </div>
-<div class="tooth" *ngIf = "age !== null">
-    <div class="toothsetA" *ngIf="age >=18;else kidstooth">
-        <app-adulttooth></app-adulttooth>
-        
 
+    <div class="tooth">
+
+        <div class="tooth__type">
+            <app-adulttooth *ngIf="age >= 18"></app-adulttooth>
+            <app-kidstooth *ngIf="age < 18"></app-kidstooth>
+            
+        </div>
+
+        <div class="tooth__selection" >
+            <h4 class="tooth__selection-header">Select tooths from here to specify problem</h4>
+            <div class="tooth__selection-set" *ngIf = "age >= 18">
+                <button (click) = "setTooth(item)" (dblclick) = "removeTooth(item)" class="tooth__card" [class.selected] = "selectedTooth.includes(item)" *ngFor="let item of adultToothSet">
+                    <p class="tooth__card-name">{{item}}</p>
+                    <img src="assets/tooth_big.png" alt="" class="tooth__card-img">
+                    
+                </button>
+            </div>
+
+
+            <div class="tooth__selection-set" *ngIf="age < 18">
+                <button (click) = "setTooth(item)" (dblclick) = "removeTooth(item)" class="tooth__card" [class.selected] = "selectedTooth.includes(item)" *ngFor="let item of childToothSet">
+                    <p class="tooth__card-name">{{item}}</p>
+                    <img src="assets/tooth_big.png" alt="" class="tooth__card-img">
+                    
+                </button>
+            </div>
+
+        </div>
+    
     </div>
 
-    <div class="toosetB">
-        <ng-template #kidstooth>
-            <app-kidstooth></app-kidstooth>
-        </ng-template>
+
+
+
+    <div class="selected-tooths" *ngIf="selectedTooth.length > 0; else message">
+        <p *ngFor="let tooth of selectedTooth">Tooth: {{tooth}}</p>
     </div>
 
+    <ng-template class="selected-tooths" #message>
+        <p class="message">Please select tooth to see give advise to patient</p>
+    </ng-template>
 
-</div>
+   
     
 </div>

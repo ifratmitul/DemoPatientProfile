@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-a* {
-    margin: 0;
-    padding: 0;
-  }
+
+
+
+
   
   *,
   *::before,
@@ -20,16 +20,13 @@ a* {
     font-weight: 400;
     line-height: 1.6;
     color: #050505;
-  background-image: linear-gradient(90deg,#2dbdb6 0%,#084663 100%)!important;
+    background-image: linear-gradient(90deg,#2dbdb6 0%,#084663 100%)!important;
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh;
     margin: 0;
-    // display: flex;
-    // flex-wrap: wrap;
-    // width: 100%;
+    
   }
-
 
   
   
