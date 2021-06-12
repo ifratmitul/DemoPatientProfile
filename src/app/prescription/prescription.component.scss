@@ -17,10 +17,19 @@
   }
 
   .rx-header{
-    font-size: 2.5rem;
+    font-size: 3rem;
+    font-weight: 700;
     text-transform: uppercase;
     text-align: center;
     letter-spacing: 1rem;
+    margin: 5rem 0;
+    
+
+      background: -webkit-linear-gradient(45deg
+      , rgb(9, 0, 159), rgb(31, 168, 111) 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    
   }
 
   .tooth{
@@ -31,7 +40,15 @@
 
 
    &__type{
-     margin-right: auto;
+      margin : auto 0;
+      text-align: center;
+      font-size: 2.25rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      
+      h6{
+        margin: 1.5rem 0 !important;
+      }
    }
 
    &__selection{
@@ -40,7 +57,7 @@
     flex: 0 0 72%;
     flex-direction: column;
     align-items: center;
-    margin-right: 1rem;
+ 
     border-left: 0.15rem solid #ccc;
 
 
@@ -49,6 +66,7 @@
       font-weight: 500;
       text-transform: uppercase;
       color: gray;
+      margin: 2.5rem 0;
 
   
     }
@@ -57,24 +75,57 @@
       display: flex;
       flex-wrap: wrap; 
       margin-left: 1rem;
+
       
 
 
     }
 
+    &-selected{
+
+
+      align-self: stretch;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      &--card{
+        flex: 0 0 48%;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4%;
+        margin: 0.4rem;
+      }
+
+      .instruction-box{
+        background-color: rgb(211, 199, 223);
+        padding: 0 0.4rem;
+        margin: 0 0.4rem;
+        font-size: 1.15rem;
+        
+
+      }
+    }
+
   }
 
 
-
+   &__card-selected,
    &__card{
      display: flex;
      flex-direction: column;
      align-items: center;
-     margin: 1rem;
+     margin: 0 0.8rem;
      border: none;
-     background-color: transparent;
      cursor: pointer;
      transition: all 0.2s;
+     padding: 0.3rem;
+     background-color: transparent;
+     border-radius: 6%;
+     flex-wrap: wrap;
 
 
 
@@ -86,11 +137,16 @@
 
       &-name{
         font-size: 2rem; 
+        margin-bottom: 0.5rem;
+        font-weight: 500;
       }
 
 
       &:hover{
         background-color: #ccc;
+        transform: translateY(-0.5rem);
+        
+        
       }
 
     }
@@ -108,9 +164,15 @@
 
 
   .selected{
-    background-color: yellow;
+    background-color: rgba(129, 6, 6, 0.938);
+    transform: translateY(-0.8rem);
+    margin-top: 0.3rem;
+    color: white;
   }
 
-  .selected-tooth{
 
-  }
+
+
+  //FORM
+
+

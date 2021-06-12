@@ -4,6 +4,7 @@ import { PrescriptionComponent } from './prescription.component';
 import { RxRoutingModule } from './rx-routing.module';
 import { AdulttoothComponent } from './adulttooth/adulttooth.component';
 import { KidstoothComponent } from './kidstooth/kidstooth.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -15,7 +16,8 @@ import { KidstoothComponent } from './kidstooth/kidstooth.component';
   ],
   imports: [
     CommonModule,
-    RxRoutingModule
+    RxRoutingModule,
+    SharedModule
   ],
   exports: [PrescriptionComponent]
 })

@@ -1,9 +1,5 @@
 <div class="container">
-    <div class="header">
-        <h4 class="rx-header">
-            Prescription
-        </h4>
-    </div>
+   
 
     <div class="tooth">
 
@@ -14,9 +10,14 @@
         </div>
 
         <div class="tooth__selection" >
+            <div class="header">
+                <h4 class="rx-header">
+                    Prescription
+                </h4>
+            </div>
             <h4 class="tooth__selection-header">Select tooths from here to specify problem</h4>
-            <div class="tooth__selection-set" *ngIf = "age >= 18">
-                <button (click) = "setTooth(item)" (dblclick) = "removeTooth(item)" class="tooth__card" [class.selected] = "selectedTooth.includes(item)" *ngFor="let item of adultToothSet">
+            <div  class="tooth__selection-set" *ngIf = "age >= 18">
+                <button [disabled] = "age === null" (click) = "setTooth(item)" (dblclick) = "removeTooth(item)" class="tooth__card" [class.selected] = "selectedTooth.includes(item)" *ngFor="let item of adultToothSet">
                     <p class="tooth__card-name">{{item}}</p>
                     <img src="assets/tooth_big.png" alt="" class="tooth__card-img">
                     
@@ -32,6 +33,32 @@
                 </button>
             </div>
 
+            <h4 class="tooth__selection-header">Selected teeth</h4>
+            <div class="tooth__selection-selected" *ngIf="selectedTooth.length > 0; else message">
+                
+                <div class="tooth__selection-selected--card" *ngFor="let tooth of selectedTooth">
+                    <div class="tooth__card-selected" >
+                        <p class="tooth__card-name">{{tooth}}</p>
+                        <img src="assets/tooth_big.png" alt="" class="tooth__card-img">
+                        
+                    </div>
+
+                    <div class="instruction-box">
+                        <!-- <app-text-input ></app-text-input> -->
+                        <p>Problem Specification form for this tooth  goes here</p>
+                    </div>
+                </div>
+
+                
+            </div>
+        
+            <ng-template #message>
+                <div class="tooth__selection-selected">
+                    <p class="message">Please select tooth to see give advise to patient</p>
+                </div>
+                
+            </ng-template>
+
         </div>
     
     </div>
@@ -39,13 +66,7 @@
 
 
 
-    <div class="selected-tooths" *ngIf="selectedTooth.length > 0; else message">
-        <p *ngFor="let tooth of selectedTooth">Tooth: {{tooth}}</p>
-    </div>
 
-    <ng-template class="selected-tooths" #message>
-        <p class="message">Please select tooth to see give advise to patient</p>
-    </ng-template>
 
    
     
