@@ -1,3 +1,6 @@
+
+
+
 <div class="container">
    
 
@@ -9,12 +12,16 @@
             
         </div>
 
-        <div class="tooth__selection" >
+        <div class="tooth__selection">
             <div class="header">
                 <h4 class="rx-header">
                     Prescription
                 </h4>
             </div>
+            <span class="instruction-box">
+                <p>Enter Patient age</p>
+                <input  type="number" [(ngModel)] = "age" >
+            </span>
             <h4 class="tooth__selection-header">Select tooths from here to specify problem</h4>
             <div  class="tooth__selection-set" *ngIf = "age >= 18">
                 <button [disabled] = "age === null" (click) = "setTooth(item)" (dblclick) = "removeTooth(item)" class="tooth__card" [class.selected] = "selectedTooth.includes(item)" *ngFor="let item of adultToothSet">
@@ -34,30 +41,46 @@
             </div>
 
             <h4 class="tooth__selection-header">Selected teeth</h4>
-            <div class="tooth__selection-selected" *ngIf="selectedTooth.length > 0; else message">
-                
-                <div class="tooth__selection-selected--card" *ngFor="let tooth of selectedTooth">
-                    <div class="tooth__card-selected" >
-                        <p class="tooth__card-name">{{tooth}}</p>
-                        <img src="assets/tooth_big.png" alt="" class="tooth__card-img">
-                        
+            <form  (ngSubmit) ="onSubmit(f)" #f = "ngForm" class="tooth__selection-selected" *ngIf="selectedTooth.length > 0; else message">
+               
+                <div class="form">
+                    <div class="tooth__selection-selected--card" *ngFor="let tooth of selectedTooth" >
+                        <div class="tooth__card-selected" >
+                            <p class="tooth__card-name">{{tooth}}</p>
+                            <img src="assets/tooth_big.png" alt="" class="tooth__card-img">
+                            
+                        </div>
+    
+                        <div class="instruction-box">
+                            <input type="text" placeholder="specify problem for teeth-{{tooth}}" name="{{tooth}}"  ngModel>
+                        </div>
                     </div>
+    
 
-                    <div class="instruction-box">
-                        <!-- <app-text-input ></app-text-input> -->
-                        <p>Problem Specification form for this tooth  goes here</p>
-                    </div>
+    
                 </div>
 
-                
-            </div>
+                    <button class="form__footer" type="submit">Submit</button>  
+             
+            </form>
+
         
             <ng-template #message>
                 <div class="tooth__selection-selected">
-                    <p class="message">Please select tooth to see give advise to patient</p>
+                    <p class="tooth__selection-header" style="font-size: 1.4rem;">Please select tooth to provide instruction for patient</p>
                 </div>
                 
             </ng-template>
+
+
+            <ng-template #test>
+                <div class="tooth__selection-selected">
+                    <p class="tooth__selection-header">Please enter patient age to select teeth</p>
+                </div>
+                
+            </ng-template>
+
+
 
         </div>
     
@@ -71,3 +94,7 @@
    
     
 </div>
+
+
+
+ 

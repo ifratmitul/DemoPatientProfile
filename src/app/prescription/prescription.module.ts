@@ -5,6 +5,7 @@ import { RxRoutingModule } from './rx-routing.module';
 import { AdulttoothComponent } from './adulttooth/adulttooth.component';
 import { KidstoothComponent } from './kidstooth/kidstooth.component';
 import { SharedModule } from '../shared/shared.module';
+import { ShowcaseComponent } from './showcase/showcase.component';
 
 
 
@@ -12,7 +13,8 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     PrescriptionComponent,
     AdulttoothComponent,
-    KidstoothComponent
+    KidstoothComponent,
+    ShowcaseComponent
   ],
   imports: [
     CommonModule,

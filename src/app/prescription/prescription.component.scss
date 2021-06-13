@@ -89,6 +89,8 @@
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
+      flex-direction: column;
+      align-items: center;
 
       &--card{
         flex: 0 0 48%;
@@ -98,14 +100,75 @@
         border: 1px solid #ccc;
         border-radius: 4%;
         margin: 0.4rem;
+        align-items: center;
       }
 
       .instruction-box{
-        background-color: rgb(211, 199, 223);
+
         padding: 0 0.4rem;
-        margin: 0 0.4rem;
+        margin: 1rem 0.1rem;
         font-size: 1.15rem;
+        border: 1px solid #ccc;
+        width: 90%;
+        border-radius: 3.5%;
+
+
         
+
+        input{
+          border: none;
+          height: 3.5rem;
+          width: 100%;
+          margin: 0 auto;
+          font-size: 1.6rem;
+          text-transform: capitalize; 
+        }
+
+        input:focus,
+        input:active,
+        input:visited{
+          border: none;
+          outline: none;
+        }
+
+        
+
+      }
+
+      .form{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        align-self: stretch;
+
+        &__footer{
+          background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          padding: 1.5rem 3.2rem;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 1.6rem;
+          border-radius: 3.5%;
+          transition: all 0.3s;
+          margin-top: 2rem;
+          
+
+          
+        }
+
+        &__footer:hover{
+          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+          transform: translateY(-0.3rem);
+        }
+
+        &__footer:active{
+          transform: translateY(0.4rem);
+        }
+
+
 
       }
     }
@@ -126,6 +189,8 @@
      background-color: transparent;
      border-radius: 6%;
      flex-wrap: wrap;
+
+     
 
 
 
