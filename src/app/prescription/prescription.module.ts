@@ -6,6 +6,8 @@ import { AdulttoothComponent } from './adulttooth/adulttooth.component';
 import { KidstoothComponent } from './kidstooth/kidstooth.component';
 import { SharedModule } from '../shared/shared.module';
 import { ShowcaseComponent } from './showcase/showcase.component';
+import { RxFormComponent } from './rx-form/rx-form.component';
+import { ToothSelectorComponent } from './tooth-selector/tooth-selector.component';
 
 
 
@@ -14,7 +16,9 @@ import { ShowcaseComponent } from './showcase/showcase.component';
     PrescriptionComponent,
     AdulttoothComponent,
     KidstoothComponent,
-    ShowcaseComponent
+    ShowcaseComponent,
+    RxFormComponent,
+    ToothSelectorComponent
   ],
   imports: [
     CommonModule,

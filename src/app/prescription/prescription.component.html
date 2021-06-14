@@ -1,100 +1,28 @@
-
-
-
 <div class="container">
-   
-
-    <div class="tooth">
-
-        <div class="tooth__type">
-            <app-adulttooth *ngIf="age >= 18"></app-adulttooth>
-            <app-kidstooth *ngIf="age < 18"></app-kidstooth>
-            
-        </div>
-
-        <div class="tooth__selection">
-            <div class="header">
-                <h4 class="rx-header">
-                    Prescription
-                </h4>
-            </div>
-            <span class="instruction-box">
-                <p>Enter Patient age</p>
-                <input  type="number" [(ngModel)] = "age" >
-            </span>
-            <h4 class="tooth__selection-header">Select tooths from here to specify problem</h4>
-            <div  class="tooth__selection-set" *ngIf = "age >= 18">
-                <button [disabled] = "age === null" (click) = "setTooth(item)" (dblclick) = "removeTooth(item)" class="tooth__card" [class.selected] = "selectedTooth.includes(item)" *ngFor="let item of adultToothSet">
-                    <p class="tooth__card-name">{{item}}</p>
-                    <img src="assets/tooth_big.png" alt="" class="tooth__card-img">
-                    
-                </button>
-            </div>
-
-
-            <div class="tooth__selection-set" *ngIf="age < 18">
-                <button (click) = "setTooth(item)" (dblclick) = "removeTooth(item)" class="tooth__card" [class.selected] = "selectedTooth.includes(item)" *ngFor="let item of childToothSet">
-                    <p class="tooth__card-name">{{item}}</p>
-                    <img src="assets/tooth_big.png" alt="" class="tooth__card-img">
-                    
-                </button>
-            </div>
-
-            <h4 class="tooth__selection-header">Selected teeth</h4>
-            <form  (ngSubmit) ="onSubmit(f)" #f = "ngForm" class="tooth__selection-selected" *ngIf="selectedTooth.length > 0; else message">
-               
-                <div class="form">
-                    <div class="tooth__selection-selected--card" *ngFor="let tooth of selectedTooth" >
-                        <div class="tooth__card-selected" >
-                            <p class="tooth__card-name">{{tooth}}</p>
-                            <img src="assets/tooth_big.png" alt="" class="tooth__card-img">
-                            
-                        </div>
-    
-                        <div class="instruction-box">
-                            <input type="text" placeholder="specify problem for teeth-{{tooth}}" name="{{tooth}}"  ngModel>
-                        </div>
-                    </div>
-    
-
-    
-                </div>
-
-                    <button class="form__footer" type="submit">Submit</button>  
-             
-            </form>
-
-        
-            <ng-template #message>
-                <div class="tooth__selection-selected">
-                    <p class="tooth__selection-header" style="font-size: 1.4rem;">Please select tooth to provide instruction for patient</p>
-                </div>
-                
-            </ng-template>
-
-
-            <ng-template #test>
-                <div class="tooth__selection-selected">
-                    <p class="tooth__selection-header">Please enter patient age to select teeth</p>
-                </div>
-                
-            </ng-template>
-
-
-
-        </div>
-    
+  <div class="tooth">
+    <div class="tooth__type">
+      <app-adulttooth *ngIf="age >= 18"></app-adulttooth>
+      <app-kidstooth *ngIf="age < 18"></app-kidstooth>
     </div>
 
+    <div class="tooth__selection">
+      <div class="header">
+        <h4 class="rx-header">Prescription</h4>
+      </div>
+      <span class="instruction-box">
+        <p>Enter Patient age</p>
+        <input type="number" [(ngModel)]="age" />
+      </span>
+      <h4 class="tooth__selection-header">
+        Select tooths from here to specify problem
+      </h4>
 
+      <app-tooth-selector
+        [toothset]="age >= 18 ? adultToothSet : childToothSet"
+      ></app-tooth-selector>
 
-
-
-
-   
-    
+      <h4 class="tooth__selection-header">Selected teeth</h4>
+      <app-rx-form class="rx-form"></app-rx-form>
+    </div>
+  </div>
 </div>
-
-
-
- 
