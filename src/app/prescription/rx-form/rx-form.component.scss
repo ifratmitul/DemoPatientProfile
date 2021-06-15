@@ -1,9 +1,50 @@
+.tooth__selection {
+  &-set {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 1rem;
+  }
+}
+
 .tooth {
+  &__card-selected,
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.5rem 0.8rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0.3rem;
+    background-color: transparent;
+    border-radius: 6%;
+    flex-wrap: wrap;
+
+    &-img {
+      height: 3rem;
+      width: 2.5rem;
+      object-fit: cover;
+    }
+
+    &-name {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    &:hover {
+      background-color: #ccc;
+      transform: translateY(-0.5rem);
+    }
+  }
+
   &__selection {
     &-set {
       display: flex;
       flex-wrap: wrap;
-      margin-left: 1rem;
+      margin: 2rem 0;
+      margin-left: 1rem !important;
     }
 
     &-selected {
@@ -24,6 +65,21 @@
         border-radius: 4%;
         margin: 0.4rem;
         align-items: center;
+        position: relative;
+      }
+
+      .card-remove {
+        top: 0;
+        right: 0;
+        z-index: 100;
+        display: block;
+        position: absolute;
+        background-color: rgb(156, 13, 13);
+        color: whitesmoke;
+        border: none;
+        border-radius: 6.5%;
+        font-size: 2rem;
+        overflow: hidden;
       }
 
       .instruction-box {
@@ -69,7 +125,7 @@
           font-size: 1.6rem;
           border-radius: 3.5%;
           transition: all 0.3s;
-          margin-top: 2rem;
+          margin: 2rem;
         }
 
         &__footer:hover {
@@ -85,39 +141,6 @@
   }
 }
 
-.tooth {
-  &__card-selected,
-  &__card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 0.8rem;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s;
-    padding: 0.3rem;
-    background-color: transparent;
-    border-radius: 6%;
-    flex-wrap: wrap;
-
-    &-img {
-      height: 3rem;
-      width: 2.5rem;
-      object-fit: cover;
-    }
-
-    &-name {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-
-    &:hover {
-      background-color: #ccc;
-      transform: translateY(-0.5rem);
-    }
-  }
-}
 .doc-box {
   display: flex;
   flex-wrap: wrap;
@@ -143,4 +166,73 @@
     background: #fff;
     padding: 0 3px;
   }
+}
+
+.med__form-box {
+  padding: 2rem;
+}
+
+.med__form-row {
+}
+
+.med__form-input {
+  margin: 0.2rem 0;
+  padding: 0.8rem 2rem;
+  text-transform: capitalize;
+
+  input {
+    padding: 1rem 0;
+    margin: 0 0.2rem;
+    border: 2px solid #ccc;
+    text-align: center;
+  }
+
+  input:focus,
+  input:active {
+    border-color: #4caf50;
+  }
+}
+
+.btn-add {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 1rem 1.25rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  border-radius: 3.5%;
+  transition: all 0.3s;
+}
+
+.btn-add:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transform: translateY(-0.3rem);
+}
+
+.btn-remove {
+  background-color: #701009; /* Green */
+  border: none;
+  color: white;
+  padding: 1.25rem 0.45rem;
+  text-align: center;
+  text-transform: capitalize;
+  display: inline-block;
+  font-size: 1rem;
+  border-radius: 3.5%;
+  transition: all 0.3s;
+  margin: 0 0.2rem;
+}
+
+.btn-remove:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transform: translateY(-0.3rem);
+}
+
+.selected {
+  background-color: rgba(129, 6, 6, 0.938) !important;
+  transform: translateY(-0.8rem);
+  margin-top: 0.3rem 0;
+  color: white !important;
 }
