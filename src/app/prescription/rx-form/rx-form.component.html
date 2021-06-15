@@ -1,0 +1,103 @@
+<!-- <form
+  (ngSubmit)="onSubmit(f)"
+  #f="ngForm"
+  class="tooth__selection-selected"
+  *ngIf="selectedTooth.length > 0; else message"
+>
+  <div class="form">
+    <div
+      class="tooth__selection-selected--card"
+      *ngFor="let tooth of selectedTooth"
+    >
+      <div class="tooth__card-selected">
+        <p class="tooth__card-name">{{ tooth }}</p>
+        <img src="assets/tooth_big.png" alt="" class="tooth__card-img" />
+      </div>
+
+      <div class="instruction-box" ngModelGroup="teethData">
+        <input
+          type="text"
+          placeholder="specify problem for teeth-{{ tooth }}"
+          name="{{ tooth }}"
+          ngModel
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-box">
+    <section class="fieldset">
+      <h1>Medication</h1>
+      <p>Booyah!</p>
+    </section>
+
+    <section class="fieldset">
+      <h1>Instruction</h1>
+      <p>Booyah!</p>
+    </section>
+  </div>
+
+  <button class="form__footer" type="submit">Submit</button>
+</form>
+
+<ng-template #message>
+  <div class="tooth__selection-selected">
+    <p class="tooth__selection-header" style="font-size: 1.4rem">
+      Please select tooth to provide instruction for patient
+    </p>
+  </div>
+</ng-template> -->
+
+<form
+  (ngSubmit)="onSubmit()"
+  [formGroup]="rxForm"
+  class="tooth__selection-selected"
+  *ngIf="selectedTooth.length > 0; else message"
+>
+  <div class="form">
+    <div
+      class="tooth__selection-selected--card"
+      *ngFor="let toothForm of controls; let i = index"
+    >
+      <div class="tooth__card-selected">
+        <p class="tooth__card-name">{{ selectedTooth[i] }}</p>
+        <img src="assets/tooth_big.png" alt="" class="tooth__card-img" />
+      </div>
+
+      <div class="instruction-box" formArrayName="problems">
+        <app-text-input
+          [formControlName]="i"
+          [label]="'specify problem'"
+        ></app-text-input>
+        <!-- <input
+          type="text"
+          placeholder="specify problem for teeth-{{ tooth }}"
+          name="{{ tooth }}"
+          ngModel
+        /> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-box">
+    <section class="fieldset">
+      <h1>Medication</h1>
+      <div>Medication form</div>
+    </section>
+
+    <section class="fieldset">
+      <h1>Instruction</h1>
+      <p>Booyah!</p>
+    </section>
+  </div>
+
+  <button class="form__footer" type="submit">Submit</button>
+</form>
+
+<ng-template #message>
+  <div class="tooth__selection-selected">
+    <p class="tooth__selection-header" style="font-size: 1.4rem">
+      Please select tooth to provide instruction for patient
+    </p>
+  </div>
+</ng-template>
