@@ -1,25 +1,45 @@
-<!-- <form
-  (ngSubmit)="onSubmit(f)"
-  #f="ngForm"
+<div class="tooth__selection-set">
+  <button
+    (click)="setTooth(item)"
+    class="tooth__card"
+    [class.selected]="selectedTooth.includes(item)"
+    *ngFor="let item of toothset"
+  >
+    <p class="tooth__card-name">{{ item }}</p>
+    <img src="assets/tooth_big.png" alt="" class="tooth__card-img" />
+  </button>
+</div>
+
+<form
+  (ngSubmit)="onSubmit()"
+  [formGroup]="rxForm"
   class="tooth__selection-selected"
-  *ngIf="selectedTooth.length > 0; else message"
+  *ngIf="controls.length > 0; else message"
 >
-  <div class="form">
+  <div class="form" formArrayName="problems">
     <div
       class="tooth__selection-selected--card"
-      *ngFor="let tooth of selectedTooth"
+      *ngFor="let tooth of controls; let i = index"
+      [formGroupName]="i"
     >
+      <button
+        class="card-remove"
+        type="button"
+        (click)="removeTooth(i, selectedTooth[i])"
+      >
+        &times;
+      </button>
       <div class="tooth__card-selected">
-        <p class="tooth__card-name">{{ tooth }}</p>
+        <p class="tooth__card-name">{{ selectedTooth[i] }}</p>
         <img src="assets/tooth_big.png" alt="" class="tooth__card-img" />
       </div>
 
-      <div class="instruction-box" ngModelGroup="teethData">
+      <div class="instruction-box">
         <input
           type="text"
-          placeholder="specify problem for teeth-{{ tooth }}"
-          name="{{ tooth }}"
-          ngModel
+          formControlName="specify"
+          name="specify"
+          placeholder="Specify problem for teeth- {{ selectedTooth[i] }}"
         />
       </div>
     </div>
@@ -28,66 +48,80 @@
   <div class="doc-box">
     <section class="fieldset">
       <h1>Medication</h1>
-      <p>Booyah!</p>
+      <span *ngIf="MedControlls.length > 0; else addbutton">
+        <div class="med__form-box" formArrayName="medication">
+          <div
+            class="med__form-row"
+            *ngFor="let medform of MedControlls; let i = index"
+            [formGroupName]="i"
+          >
+            <div class="med__form-input">
+              <input
+                type="text"
+                placeholder="Add medicine"
+                formControlName="medicine"
+                name="medicine"
+              />
+
+              <button
+                class="btn-remove"
+                type="button"
+                (click)="removeMedication(i)"
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+          <button type="button" class="btn-add" (click)="addMedication()">
+            Add more
+          </button>
+        </div>
+      </span>
+
+      <ng-template #addbutton>
+        <button type="button" class="btn-add" (click)="addMedication()">
+          Add Medication
+        </button>
+      </ng-template>
     </section>
 
     <section class="fieldset">
       <h1>Instruction</h1>
-      <p>Booyah!</p>
-    </section>
-  </div>
+      <span *ngIf="Instruction.length > 0; else addIns">
+        <div class="med__form-box" formArrayName="instruction">
+          <div
+            class="med__form-row"
+            *ngFor="let medform of Instruction; let i = index"
+            [formGroupName]="i"
+          >
+            <div class="med__form-input">
+              <input
+                type="text"
+                formControlName="suggestion"
+                name="suggestion"
+                placeholder="Add instruction for patient"
+              />
 
-  <button class="form__footer" type="submit">Submit</button>
-</form>
+              <button
+                type="button"
+                class="btn-remove"
+                (click)="removeInstruction(i)"
+              >
+                remove
+              </button>
+            </div>
+          </div>
+          <button type="button" class="btn-add" (click)="addInstruction()">
+            Add more
+          </button>
+        </div>
+      </span>
 
-<ng-template #message>
-  <div class="tooth__selection-selected">
-    <p class="tooth__selection-header" style="font-size: 1.4rem">
-      Please select tooth to provide instruction for patient
-    </p>
-  </div>
-</ng-template> -->
-
-<form
-  (ngSubmit)="onSubmit()"
-  [formGroup]="rxForm"
-  class="tooth__selection-selected"
-  *ngIf="selectedTooth.length > 0; else message"
->
-  <div class="form">
-    <div
-      class="tooth__selection-selected--card"
-      *ngFor="let toothForm of controls; let i = index"
-    >
-      <div class="tooth__card-selected">
-        <p class="tooth__card-name">{{ selectedTooth[i] }}</p>
-        <img src="assets/tooth_big.png" alt="" class="tooth__card-img" />
-      </div>
-
-      <div class="instruction-box" formArrayName="problems">
-        <app-text-input
-          [formControlName]="i"
-          [label]="'specify problem'"
-        ></app-text-input>
-        <!-- <input
-          type="text"
-          placeholder="specify problem for teeth-{{ tooth }}"
-          name="{{ tooth }}"
-          ngModel
-        /> -->
-      </div>
-    </div>
-  </div>
-
-  <div class="doc-box">
-    <section class="fieldset">
-      <h1>Medication</h1>
-      <div>Medication form</div>
-    </section>
-
-    <section class="fieldset">
-      <h1>Instruction</h1>
-      <p>Booyah!</p>
+      <ng-template #addIns>
+        <button type="button" class="btn-add" (click)="addInstruction()">
+          Add Medication
+        </button>
+      </ng-template>
     </section>
   </div>
 

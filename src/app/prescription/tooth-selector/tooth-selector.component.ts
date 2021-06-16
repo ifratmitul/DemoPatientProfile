@@ -13,6 +13,9 @@ export class ToothSelectorComponent implements OnInit {
 
   ngOnInit(): void {
     //console.log(this.toothset);
+    this.rxService.selectedteeth.subscribe((res) => {
+      this.selectedTooth = res;
+    });
   }
 
   setTooth(id: number) {
@@ -20,15 +23,8 @@ export class ToothSelectorComponent implements OnInit {
 
     if (!this.selectedTooth.includes(id)) {
       this.selectedTooth.push(id);
-      this.rxService.selectedteeth.next(this.selectedTooth);
+      this.rxService.selectTooth(this.selectedTooth);
+      this.rxService.isSelected.next(true);
     }
-  }
-  removeTooth(id: number) {
-    // console.log('removing: '+ id);
-    this.selectedTooth = this.selectedTooth.filter(function (ele) {
-      return ele != id;
-    });
-
-    this.rxService.selectedteeth.next(this.selectedTooth);
   }
 }

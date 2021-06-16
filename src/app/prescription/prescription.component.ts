@@ -28,11 +28,5 @@ export class PrescriptionComponent implements OnInit {
 
   constructor() {}
 
-  prescriptionForm: FormGroup;
-
-  ngOnInit(): void {
-    this.prescriptionForm = new FormGroup({
-      problems: new FormArray([]),
-    });
-  }
+  ngOnInit(): void {}
 }

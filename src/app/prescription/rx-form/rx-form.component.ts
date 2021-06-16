@@ -1,11 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormArray,
-  FormControl,
-  FormGroup,
-  NgForm,
-  Validators,
-} from '@angular/forms';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { PrescriptionService } from '../prescription.service';
 
 @Component({
@@ -17,60 +12,95 @@ export class RxFormComponent implements OnInit {
   selectedTooth: number[] = [];
   data = [];
   rxForm: FormGroup;
+  @Input() toothset = [];
   constructor(private rxService: PrescriptionService) {}
 
   ngOnInit(): void {
-    this.problemTooth();
-
     this.rxForm = new FormGroup({
       patientData: new FormGroup({
         name: new FormControl(null),
       }),
       medication: new FormArray([]),
       problems: new FormArray([]),
+      instruction: new FormArray([]),
     });
   }
 
-  problemTooth() {
-    this.rxService.selectedteeth.subscribe((res: []) => {
-      console.log(res);
-      console.log('called');
-      const controls = new FormControl(null);
-      (<FormArray>this.rxForm.get('problems')).push(controls);
+  // problemTooth() {
+  //   (<FormArray>this.rxForm.get('problems')).push(
+  //     new FormGroup({
+  //       specify: new FormControl(),
+  //     })
+  //   );
 
-      this.selectedTooth = res;
-    });
-  }
-
-  // onSubmit(form: NgForm) {
-  //   // console.log('form submission');
-  //   // let problem = form.value.teethData;
-  //   // this.data.push(problem);
-  //   // console.log(form.value);
-  //   // console.log(this.data);
-  //   // var d = this.data[0];
-  //   // for (var key in d) {
-  //   //   console.log(key);
-  //   //   if (key === 'name') console.log('name found');
-  //   //   console.log(d[key]);
-  //   // }
-  //   // form.reset();
+  //   this.rxService.isSelected.next(false);
   // }
 
-  onSubmit() {
-    console.log(this.rxForm.get('problems').value);
-    let data: [] = this.rxForm.get('problems').value;
-
-    for (let item of data) {
-      console.log(item);
-      console.log(this.selectedTooth[data.indexOf(item)]);
+  setTooth(id: number) {
+    if (!this.selectedTooth.includes(id)) {
+      this.selectedTooth.push(id);
+      (<FormArray>this.rxForm.get('problems')).push(
+        new FormGroup({
+          specify: new FormControl(),
+        })
+      );
     }
   }
-  addMedication() {}
 
-  addInstruction() {}
+  removeTooth(index: number, teethNo: number) {
+    (<FormArray>this.rxForm.get('problems')).removeAt(index);
+    console.log(this.rxForm);
+
+    //removing tooth from selected teeth
+    this.selectedTooth = this.selectedTooth.filter(function (ele) {
+      return ele != teethNo;
+    });
+
+    this.rxService.removeTooth(this.selectedTooth);
+  }
+
+  onSubmit() {
+    console.log(this.rxForm);
+    //let data: [] = this.rxForm.get('problems').value;
+
+    // for (let item of data) {
+    //   console.log(item);
+    //   console.log(this.selectedTooth[data.indexOf(item)]);
+    // }
+  }
+
+  //Adding removing from different FormArray
+  addMedication() {
+    (<FormArray>this.rxForm.get('medication')).push(
+      new FormGroup({
+        medicine: new FormControl(),
+      })
+    );
+  }
+
+  addInstruction() {
+    (<FormArray>this.rxForm.get('instruction')).push(
+      new FormGroup({
+        suggestion: new FormControl(),
+      })
+    );
+  }
+  removeMedication(i: number) {
+    (this.rxForm.get('medication') as FormArray).removeAt(i);
+  }
+
+  removeInstruction(i: number) {
+    (this.rxForm.get('instruction') as FormArray).removeAt(i);
+  }
 
   get controls() {
     return (this.rxForm.get('problems') as FormArray).controls;
+  }
+
+  get MedControlls() {
+    return (this.rxForm.get('medication') as FormArray).controls;
+  }
+  get Instruction() {
+    return (this.rxForm.get('instruction') as FormArray).controls;
   }
 }
