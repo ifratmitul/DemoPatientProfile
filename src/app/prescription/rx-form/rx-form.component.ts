@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { PrescriptionService } from '../prescription.service';
 
 @Component({
@@ -10,38 +11,37 @@ import { PrescriptionService } from '../prescription.service';
 })
 export class RxFormComponent implements OnInit {
   selectedTooth: number[] = [];
-  data = [];
+  data = {
+    problems: [],
+    medication: [],
+    instruction: [],
+  };
   rxForm: FormGroup;
   @Input() toothset = [];
-  constructor(private rxService: PrescriptionService) {}
+  constructor(
+    private rxService: PrescriptionService,
+    private router: Router,
+    private activeRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.rxForm = new FormGroup({
-      patientData: new FormGroup({
-        name: new FormControl(null),
-      }),
+      // patientData: new FormGroup({
+      //   name: new FormControl(null),
+      // }),
       medication: new FormArray([]),
       problems: new FormArray([]),
       instruction: new FormArray([]),
     });
   }
 
-  // problemTooth() {
-  //   (<FormArray>this.rxForm.get('problems')).push(
-  //     new FormGroup({
-  //       specify: new FormControl(),
-  //     })
-  //   );
-
-  //   this.rxService.isSelected.next(false);
-  // }
-
   setTooth(id: number) {
     if (!this.selectedTooth.includes(id)) {
       this.selectedTooth.push(id);
       (<FormArray>this.rxForm.get('problems')).push(
         new FormGroup({
-          specify: new FormControl(),
+          specify: new FormControl(null, Validators.required),
+          tooth: new FormControl(id, Validators.required),
         })
       );
     }
@@ -55,25 +55,49 @@ export class RxFormComponent implements OnInit {
     this.selectedTooth = this.selectedTooth.filter(function (ele) {
       return ele != teethNo;
     });
-
-    this.rxService.removeTooth(this.selectedTooth);
   }
 
   onSubmit() {
-    console.log(this.rxForm);
-    //let data: [] = this.rxForm.get('problems').value;
+    //console.log(this.rxForm.value);
+    //console.log(this.rxForm.get('problems').value);
+    let problemData: [] = this.rxForm.get('problems').value;
+    if (problemData.length > 0) {
+      for (let item of problemData) {
+        this.data.problems.push(item);
+      }
+    }
 
-    // for (let item of data) {
-    //   console.log(item);
-    //   console.log(this.selectedTooth[data.indexOf(item)]);
-    // }
+    //console.log(this.rxForm.get('medication').value);
+    let medication = this.rxForm.get('medication').value;
+
+    for (let item of medication) {
+      //console.log(item['medicine']);
+      this.data.medication.push(item);
+    }
+
+    // console.log(this.rxForm.get('instruction').value);
+    let docIns = this.rxForm.get('instruction').value;
+
+    for (let item of docIns) {
+      // console.log(item['instruction']);
+      this.data.instruction.push(item);
+    }
+
+    // console.log(this.data);
+    this.rxService.setData(this.data);
+    //this.rxService.rxData.next(this.data);
+    //this.rxService.setRxData(this.data);
+
+    this.rxForm.reset();
+
+    this.router.navigate(['show'], { relativeTo: this.activeRoute });
   }
 
   //Adding removing from different FormArray
   addMedication() {
     (<FormArray>this.rxForm.get('medication')).push(
       new FormGroup({
-        medicine: new FormControl(),
+        medicine: new FormControl(null, Validators.required),
       })
     );
   }
@@ -81,7 +105,7 @@ export class RxFormComponent implements OnInit {
   addInstruction() {
     (<FormArray>this.rxForm.get('instruction')).push(
       new FormGroup({
-        suggestion: new FormControl(),
+        suggestion: new FormControl(null, Validators.required),
       })
     );
   }

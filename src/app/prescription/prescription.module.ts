@@ -7,9 +7,6 @@ import { KidstoothComponent } from './kidstooth/kidstooth.component';
 import { SharedModule } from '../shared/shared.module';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { RxFormComponent } from './rx-form/rx-form.component';
-import { ToothSelectorComponent } from './tooth-selector/tooth-selector.component';
-
-
 
 @NgModule({
   declarations: [
@@ -18,13 +15,8 @@ import { ToothSelectorComponent } from './tooth-selector/tooth-selector.componen
     KidstoothComponent,
     ShowcaseComponent,
     RxFormComponent,
-    ToothSelectorComponent
   ],
-  imports: [
-    CommonModule,
-    RxRoutingModule,
-    SharedModule
-  ],
-  exports: [PrescriptionComponent]
+  imports: [CommonModule, RxRoutingModule, SharedModule],
+  exports: [PrescriptionComponent],
 })
-export class PrescriptionModule { }
+export class PrescriptionModule {}
