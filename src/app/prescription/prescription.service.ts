@@ -1,28 +1,26 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ReplaySubject, Subject } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PrescriptionService {
-  selectedteeth = new Subject<number[]>();
-  isSelected = new Subject<boolean>();
+  rxData = new BehaviorSubject<any>(null);
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  getSelectedteeth() {
-    return this.selectedteeth.subscribe((res) => {
-      return res;
-    });
-  }
-
-  removeTooth(data: number[]) {
+  setData(data) {
     console.log(data);
-    this.selectedteeth.next(data);
-  }
+    this.rxData.next(data);
 
-  selectTooth(data: number[]) {
-    this.isSelected.next(true);
-    this.selectedteeth.next(data);
+    this.http
+      .post(
+        'https://jotno-demo-default-rtdb.asia-southeast1.firebasedatabase.app/rxdata.json',
+        data
+      )
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 }

@@ -30,7 +30,9 @@
         &times;
       </button>
       <div class="tooth__card-selected">
-        <p class="tooth__card-name">{{ selectedTooth[i] }}</p>
+        <p class="tooth__card-name">
+          <input type="number" formControlName="tooth" name="tooth" />
+        </p>
         <img src="assets/tooth_big.png" alt="" class="tooth__card-img" />
       </div>
 
@@ -125,7 +127,9 @@
     </section>
   </div>
 
-  <button class="form__footer" type="submit">Submit</button>
+  <button class="form__footer" type="submit" [disabled]="!rxForm.valid">
+    Submit
+  </button>
 </form>
 
 <ng-template #message>
