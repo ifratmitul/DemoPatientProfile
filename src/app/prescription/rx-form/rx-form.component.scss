@@ -49,7 +49,7 @@
       display: flex;
       flex-wrap: wrap;
       margin: 2rem 0;
-      margin-left: 1rem !important;
+      justify-content: center;
     }
 
     &-selected {
@@ -62,13 +62,13 @@
       align-items: center;
 
       &--card {
-        flex: 0 0 48%;
+        flex: 0 0 40%;
         display: flex;
         flex-direction: column;
         padding: 1rem;
         border: 1px solid #ccc;
-        border-radius: 4%;
-        margin: 0.4rem;
+        border-radius: 3.5%;
+        margin: 0.8rem;
         align-items: center;
         position: relative;
       }
@@ -236,7 +236,15 @@
 }
 
 .selected {
-  background-color: rgba(129, 6, 6, 0.938) !important;
+  background: rgb(49, 196, 123);
+  background: linear-gradient(
+    45deg,
+    rgba(49, 196, 123, 0.8491771708683473) 0%,
+    rgba(69, 26, 101, 0.8491771708683473) 0%,
+    rgba(43, 107, 102, 1) 97%,
+    rgba(18, 186, 102, 1) 99%,
+    rgba(49, 196, 123, 0.8491771708683473) 100%
+  );
   transform: translateY(-0.8rem);
   margin-top: 0.3rem 0;
   color: white !important;

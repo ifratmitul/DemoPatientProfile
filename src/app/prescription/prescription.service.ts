@@ -19,9 +19,14 @@ export class PrescriptionService {
         'https://jotno-demo-default-rtdb.asia-southeast1.firebasedatabase.app/rxdata.json',
         data
       )
-      .subscribe((res) => {
-        console.log(res);
-      });
+      .subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 
   getOldRx() {
@@ -29,8 +34,13 @@ export class PrescriptionService {
       .get(
         'https://jotno-demo-default-rtdb.asia-southeast1.firebasedatabase.app/rxdata.json'
       )
-      .subscribe((res) => {
-        console.log(res);
-      });
+      .subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 }
