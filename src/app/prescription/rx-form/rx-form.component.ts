@@ -12,12 +12,24 @@ import { PrescriptionService } from '../prescription.service';
 export class RxFormComponent implements OnInit {
   selectedTooth: number[] = [];
   data = {
+    patientInfo: {},
     problems: [],
     medication: [],
     instruction: [],
   };
   rxForm: FormGroup;
-  @Input() toothset = [];
+  adultToothSet: number[] = [
+    11, 12, 13, 14, 15, 16, 17, 18, 21, 22, 23, 24, 25, 26, 27, 28, 31, 32, 33,
+    34, 35, 36, 37, 38, 41, 42, 43, 44, 45, 46, 47, 48,
+  ];
+  childToothSet: number[] = [
+    51, 52, 53, 54, 55, 61, 62, 63, 64, 65, 71, 72, 73, 74, 75, 81, 82, 83, 84,
+    85,
+  ];
+  toothset = [];
+
+  patientAge: number;
+
   constructor(
     private rxService: PrescriptionService,
     private router: Router,
@@ -26,15 +38,28 @@ export class RxFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.rxForm = new FormGroup({
-      // patientData: new FormGroup({
-      //   name: new FormControl(null),
-      // }),
+      patientData: new FormGroup({
+        name: new FormControl(null, Validators.required),
+        address: new FormControl(null, Validators.required),
+        age: new FormControl(null, Validators.required),
+      }),
       medication: new FormArray([]),
       problems: new FormArray([]),
       instruction: new FormArray([]),
     });
-  }
 
+    this.setAge();
+  }
+  setAge() {
+    this.rxForm.get('patientData').valueChanges.subscribe((res) => {
+      if (res['age'] !== null) {
+        console.log(res['age']);
+        this.patientAge = res['age'];
+        this.toothset =
+          this.patientAge >= 18 ? this.adultToothSet : this.childToothSet;
+      }
+    });
+  }
   setTooth(id: number) {
     if (!this.selectedTooth.includes(id)) {
       this.selectedTooth.push(id);
@@ -58,8 +83,10 @@ export class RxFormComponent implements OnInit {
   }
 
   onSubmit() {
-    //console.log(this.rxForm.value);
-    //console.log(this.rxForm.get('problems').value);
+    console.log(this.rxForm.value);
+    console.log(this.rxForm.get('patientData').value);
+    this.data.patientInfo = this.rxForm.get('patientData').value;
+
     let problemData: [] = this.rxForm.get('problems').value;
     if (problemData.length > 0) {
       for (let item of problemData) {
@@ -67,26 +94,19 @@ export class RxFormComponent implements OnInit {
       }
     }
 
-    //console.log(this.rxForm.get('medication').value);
     let medication = this.rxForm.get('medication').value;
 
     for (let item of medication) {
-      //console.log(item['medicine']);
       this.data.medication.push(item);
     }
 
-    // console.log(this.rxForm.get('instruction').value);
     let docIns = this.rxForm.get('instruction').value;
 
     for (let item of docIns) {
-      // console.log(item['instruction']);
       this.data.instruction.push(item);
     }
 
-    // console.log(this.data);
     this.rxService.setData(this.data);
-    //this.rxService.rxData.next(this.data);
-    //this.rxService.setRxData(this.data);
 
     this.rxForm.reset();
 

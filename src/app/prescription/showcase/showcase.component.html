@@ -33,12 +33,13 @@
           </section>
         </div>
 
-        <div class="patient">
+        <div class="patient" *ngIf="patientInfo">
           <div class="patient__name">
-            <h5>Mr. Rugi</h5>
+            <h5>{{ patientInfo["name"] }}</h5>
           </div>
           <div class="patient__info">
-            <p>Age : 18</p>
+            <p>{{ patientInfo["age"] }}</p>
+            <p>{{ patientInfo["address"] }}</p>
           </div>
         </div>
 

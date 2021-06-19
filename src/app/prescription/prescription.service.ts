@@ -23,4 +23,14 @@ export class PrescriptionService {
         console.log(res);
       });
   }
+
+  getOldRx() {
+    this.http
+      .get(
+        'https://jotno-demo-default-rtdb.asia-southeast1.firebasedatabase.app/rxdata.json'
+      )
+      .subscribe((res) => {
+        console.log(res);
+      });
+  }
 }
