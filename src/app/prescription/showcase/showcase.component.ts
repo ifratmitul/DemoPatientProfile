@@ -9,6 +9,7 @@ import { PrescriptionService } from '../prescription.service';
 export class ShowcaseComponent implements OnInit {
   constructor(private rxService: PrescriptionService) {}
 
+  patientInfo: any;
   problemData: any[] = [];
   medicationData: any[] = [];
   instructionData: any[] = [];
@@ -20,8 +21,8 @@ export class ShowcaseComponent implements OnInit {
   }
 
   getData() {
-    let i = 0;
-    console.log('getData funtion called');
+    //let i = 0;
+    //console.log('getData funtion called');
 
     this.rxService.rxData.subscribe((res) => {
       if (res !== null) {
@@ -29,13 +30,14 @@ export class ShowcaseComponent implements OnInit {
         //this.data = res;
         //this.problemData = res;
         //console.log(res['problems']);
+        this.patientInfo = res['patientInfo'];
         this.problemData = [...res['problems']];
         //console.log(this.problemData);
         this.medicationData = [...res['medication']];
-        console.log(this.medicationData);
+        //console.log(this.medicationData);
 
         this.instructionData = [...res['instruction']];
-        console.log(this.instructionData);
+        //console.log(this.instructionData);
       }
     });
   }

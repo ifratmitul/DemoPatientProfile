@@ -1,21 +1,48 @@
-<div class="tooth__selection-set">
-  <button
-    (click)="setTooth(item)"
-    class="tooth__card"
-    [class.selected]="selectedTooth.includes(item)"
-    *ngFor="let item of toothset"
-  >
-    <p class="tooth__card-name">{{ item }}</p>
-    <img src="assets/tooth_big.png" alt="" class="tooth__card-img" />
-  </button>
-</div>
-
 <form
   (ngSubmit)="onSubmit()"
   [formGroup]="rxForm"
   class="tooth__selection-selected"
-  *ngIf="controls.length > 0; else message"
 >
+  <section class="info" formGroupName="patientData">
+    <div class="input-box">
+      <p class="title">Enter Patient age</p>
+
+      <app-text-input
+        formControlName="age"
+        [type]="'number'"
+        [label]="'Age'"
+      ></app-text-input>
+    </div>
+    <div class="input__box">
+      <p class="title">Patient Name</p>
+      <app-text-input
+        formControlName="name"
+        [type]="'text'"
+        [label]="'Name'"
+      ></app-text-input>
+    </div>
+    <div class="input__box">
+      <p class="title">Patient Address</p>
+      <app-text-input
+        formControlName="address"
+        [type]="'text'"
+        [label]="'Address'"
+      ></app-text-input>
+    </div>
+  </section>
+
+  <div class="tooth__selection-set">
+    <button
+      type="button"
+      (click)="setTooth(item)"
+      class="tooth__card"
+      [class.selected]="selectedTooth.includes(item)"
+      *ngFor="let item of toothset"
+    >
+      <p class="tooth__card-name">{{ item }}</p>
+      <img src="assets/tooth_big.png" alt="" class="tooth__card-img" />
+    </button>
+  </div>
   <div class="form" formArrayName="problems">
     <div
       class="tooth__selection-selected--card"
@@ -47,7 +74,7 @@
     </div>
   </div>
 
-  <div class="doc-box">
+  <div class="doc-box" *ngIf="selectedTooth.length > 0">
     <section class="fieldset">
       <h1>Medication</h1>
       <span *ngIf="MedControlls.length > 0; else addbutton">
@@ -125,11 +152,10 @@
         </button>
       </ng-template>
     </section>
+    <button class="form__footer" type="submit" [disabled]="!rxForm.valid">
+      Submit
+    </button>
   </div>
-
-  <button class="form__footer" type="submit" [disabled]="!rxForm.valid">
-    Submit
-  </button>
 </form>
 
 <ng-template #message>

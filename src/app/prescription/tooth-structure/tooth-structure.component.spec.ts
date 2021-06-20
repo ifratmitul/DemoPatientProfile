@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { KidstoothComponent } from './kidstooth.component';
+import { ToothStructureComponent } from './tooth-structure.component';
 
-describe('KidstoothComponent', () => {
-  let component: KidstoothComponent;
-  let fixture: ComponentFixture<KidstoothComponent>;
+describe('ToothStructureComponent', () => {
+  let component: ToothStructureComponent;
+  let fixture: ComponentFixture<ToothStructureComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ KidstoothComponent ]
+      declarations: [ ToothStructureComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(KidstoothComponent);
+    fixture = TestBed.createComponent(ToothStructureComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

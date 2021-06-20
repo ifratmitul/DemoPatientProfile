@@ -1,29 +1,17 @@
 <div class="container">
   <div class="tooth">
     <div class="tooth__type">
-      <app-adulttooth *ngIf="age >= 18"></app-adulttooth>
-      <app-kidstooth *ngIf="age < 18"></app-kidstooth>
+      <app-tooth-structure></app-tooth-structure>
     </div>
 
     <div class="tooth__selection">
       <div class="header">
         <h4 class="rx-header">Prescription</h4>
       </div>
-      <span class="instruction-box">
-        <p>Enter Patient age</p>
-        <input type="number" [(ngModel)]="age" />
-      </span>
-      <h4 class="tooth__selection-header">
-        Select tooths from here to specify problem
-      </h4>
 
-      <!-- <app-tooth-selector
-        [toothset]="age >= 18 ? adultToothSet : childToothSet"
-      ></app-tooth-selector> -->
-      <app-rx-form
-        class="rx-form"
-        [toothset]="age >= 18 ? adultToothSet : childToothSet"
-      ></app-rx-form>
+      <h4 class="tooth__selection-header">Enter age to select tooth</h4>
+
+      <app-rx-form class="rx-form"></app-rx-form>
     </div>
   </div>
 </div>
