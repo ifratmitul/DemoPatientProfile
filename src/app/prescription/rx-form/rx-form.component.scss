@@ -91,24 +91,19 @@
         padding: 0 0.4rem;
         margin: 1rem 0.1rem;
         font-size: 1.15rem;
-        border: 1px solid #ccc;
-        width: 90%;
-        border-radius: 3.5%;
+        //border: 1px solid #ccc;
+        width: 100%;
+        //border-radius: 3.5%;
+        text-align: center;
 
-        input {
-          border: none;
-          height: 3.5rem;
-          width: 100%;
-          margin: 0 auto;
-          font-size: 1.6rem;
-          text-transform: capitalize;
-        }
-
-        input:focus,
-        input:active,
-        input:visited {
-          border: none;
-          outline: none;
+        .issue-input {
+          display: flex;
+          margin: 1rem 0;
+          input {
+            flex: 0 0 90%;
+            text-transform: capitalize;
+            text-align: center;
+          }
         }
       }
 
@@ -147,34 +142,40 @@
 }
 
 .doc-box {
+  // display: flex;
+  // flex-wrap: wrap;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-self: stretch;
+  // justify-content: space-around;
+  width: 100%;
+}
+
+.fieldset {
+  flex: 0 0 48%;
+  position: relative;
+  border-top: 1px solid #ddd;
+  padding: 10px;
+  margin-top: 2rem;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
   justify-content: center;
-  align-self: stretch;
-  justify-content: space-around;
+}
 
-  .fieldset {
-    flex: 0 0 48%;
-    position: relative;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-top: 2rem;
-  }
-
-  .fieldset h1 {
-    position: absolute;
-    top: 0;
-    font-size: 18px;
-    line-height: 1;
-    margin: -9px 0 0; /* half of font-size */
-    background: #fff;
-    padding: 0 3px;
-  }
+.fieldset h1 {
+  position: absolute;
+  top: 0;
+  font-size: 18px;
+  line-height: 1;
+  margin: -9px 0 0; /* half of font-size */
+  background: #fff;
+  padding: 0 3px;
 }
 
 .med__form-box {
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .med__form-row {
@@ -182,7 +183,7 @@
 
 .med__form-input {
   margin: 0.2rem 0;
-  padding: 0.8rem 2rem;
+  //padding: 0.8rem 2rem;
   text-transform: capitalize;
 
   input {
@@ -206,9 +207,10 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 1rem;
+  font-size: 1.25rem;
   border-radius: 3.5%;
   transition: all 0.3s;
+  margin-top: 1rem;
 }
 
 .btn-add:hover {
@@ -275,4 +277,24 @@
     border: 2px solid;
     border-color: rgb(7, 161, 90);
   }
+}
+
+.box {
+  display: flex;
+  //flex-wrap: wrap;
+  .left-box {
+    flex: 0 0 70%;
+  }
+  .right-box {
+    //display: flex;
+    //border: 1px solid;
+    // align-self: stretch;
+    // align-items: center;
+    // justify-content: center;
+    width: 100%;
+  }
+}
+
+.invalid {
+  background-color: gray !important;
 }

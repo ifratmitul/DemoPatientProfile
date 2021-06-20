@@ -29,7 +29,7 @@ export class ShowcaseComponent implements OnInit {
         console.log(res);
         //this.data = res;
         //this.problemData = res;
-        //console.log(res['problems']);
+        console.log(res['problems']);
         this.patientInfo = res['patientInfo'];
         this.problemData = [...res['problems']];
         //console.log(this.problemData);

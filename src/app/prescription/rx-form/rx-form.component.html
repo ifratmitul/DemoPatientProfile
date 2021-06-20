@@ -3,159 +3,198 @@
   [formGroup]="rxForm"
   class="tooth__selection-selected"
 >
-  <section class="info" formGroupName="patientData">
-    <div class="input-box">
-      <p class="title">Enter Patient age</p>
+  <div class="box">
+    <div class="left-box">
+      <section class="info" formGroupName="patientData">
+        <div class="input-box">
+          <p class="title">Enter Patient age</p>
 
-      <app-text-input
-        formControlName="age"
-        [type]="'number'"
-        [label]="'Age'"
-      ></app-text-input>
-    </div>
-    <div class="input__box">
-      <p class="title">Patient Name</p>
-      <app-text-input
-        formControlName="name"
-        [type]="'text'"
-        [label]="'Name'"
-      ></app-text-input>
-    </div>
-    <div class="input__box">
-      <p class="title">Patient Address</p>
-      <app-text-input
-        formControlName="address"
-        [type]="'text'"
-        [label]="'Address'"
-      ></app-text-input>
-    </div>
-  </section>
+          <app-text-input
+            formControlName="age"
+            [type]="'number'"
+            [label]="'Age'"
+          ></app-text-input>
+        </div>
+        <div class="input__box">
+          <p class="title">Patient Name</p>
+          <app-text-input
+            formControlName="name"
+            [type]="'text'"
+            [label]="'Name'"
+          ></app-text-input>
+        </div>
+        <div class="input__box">
+          <p class="title">Patient Address</p>
+          <app-text-input
+            formControlName="address"
+            [type]="'text'"
+            [label]="'Address'"
+          ></app-text-input>
+        </div>
+      </section>
 
-  <div class="tooth__selection-set">
-    <button
-      type="button"
-      (click)="setTooth(item)"
-      class="tooth__card"
-      [class.selected]="selectedTooth.includes(item)"
-      *ngFor="let item of toothset"
-    >
-      <p class="tooth__card-name">{{ item }}</p>
-      <img src="assets/tooth_big.png" alt="" class="tooth__card-img" />
-    </button>
-  </div>
-  <div class="form" formArrayName="problems">
-    <div
-      class="tooth__selection-selected--card"
-      *ngFor="let tooth of controls; let i = index"
-      [formGroupName]="i"
-    >
-      <button
-        class="card-remove"
-        type="button"
-        (click)="removeTooth(i, selectedTooth[i])"
-      >
-        &times;
-      </button>
-      <div class="tooth__card-selected">
-        <p class="tooth__card-name">
-          <input type="number" formControlName="tooth" name="tooth" />
-        </p>
-        <img src="assets/tooth_big.png" alt="" class="tooth__card-img" />
+      <div class="tooth__selection-set">
+        <button
+          type="button"
+          (click)="setTooth(item)"
+          class="tooth__card"
+          [class.selected]="selectedTooth.includes(item)"
+          *ngFor="let item of toothset"
+        >
+          <p class="tooth__card-name">{{ item }}</p>
+          <img src="assets/tooth_big.png" alt="" class="tooth__card-img" />
+        </button>
       </div>
 
-      <div class="instruction-box">
-        <input
-          type="text"
-          formControlName="specify"
-          name="specify"
-          placeholder="Specify problem for teeth- {{ selectedTooth[i] }}"
-        />
+      <section class="fieldset" *ngIf="selectedTooth.length > 0">
+        <h1>Selected Teeth</h1>
+        <div class="form" formArrayName="problems">
+          <div
+            class="tooth__selection-selected--card"
+            *ngFor="let tooth of controls; let i = index"
+            [formGroupName]="i"
+          >
+            <button
+              class="card-remove"
+              type="button"
+              (click)="removeTooth(i, selectedTooth[i])"
+            >
+              &times;
+            </button>
+            <div class="tooth__card-selected">
+              <p class="tooth__card-name">
+                <input formControlName="tooth" name="tooth" />
+              </p>
+              <img src="assets/tooth_big.png" alt="" class="tooth__card-img" />
+            </div>
+
+            <span *ngIf="getIssue(i).length > 0; else addissue">
+              <div class="instruction-box" formArrayName="specify">
+                <div *ngFor="let item of getIssue(i); let j = index">
+                  <div class="issue-input">
+                    <input
+                      type="text"
+                      placeholder="specify issue for teeth-{{
+                        selectedTooth[i]
+                      }}"
+                      name="issue"
+                      [formControlName]="j"
+                    />
+
+                    <button
+                      class="btn-remove"
+                      type="button"
+                      (click)="removeIssue(i, j)"
+                    >
+                      &times;
+                    </button>
+                  </div>
+                </div>
+
+                <button class="btn-add" type="button" (click)="addIssue(i)">
+                  Add more
+                </button>
+              </div>
+            </span>
+            <ng-template #addissue>
+              <button type="button" class="btn-add" (click)="addIssue(i)">
+                Add issue
+              </button>
+            </ng-template>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="right-box">
+      <div class="doc-box">
+        <section class="fieldset">
+          <h1>Medication</h1>
+          <span *ngIf="MedControlls.length > 0; else addbutton">
+            <div class="med__form-box" formArrayName="medication">
+              <div
+                class="med__form-row"
+                *ngFor="let medform of MedControlls; let i = index"
+                [formGroupName]="i"
+              >
+                <div class="med__form-input">
+                  <input
+                    type="text"
+                    placeholder="Add medicine"
+                    formControlName="medicine"
+                    name="medicine"
+                  />
+
+                  <button
+                    class="btn-remove"
+                    type="button"
+                    (click)="removeMedication(i)"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+              <button type="button" class="btn-add" (click)="addMedication()">
+                Add more
+              </button>
+            </div>
+          </span>
+
+          <ng-template #addbutton>
+            <button type="button" class="btn-add" (click)="addMedication()">
+              Add Medication
+            </button>
+          </ng-template>
+        </section>
+
+        <section class="fieldset">
+          <h1>Instruction</h1>
+          <span *ngIf="Instruction.length > 0; else addIns">
+            <div class="med__form-box" formArrayName="instruction">
+              <div
+                class="med__form-row"
+                *ngFor="let medform of Instruction; let i = index"
+                [formGroupName]="i"
+              >
+                <div class="med__form-input">
+                  <input
+                    type="text"
+                    formControlName="suggestion"
+                    name="suggestion"
+                    placeholder="Add instruction for patient"
+                  />
+
+                  <button
+                    type="button"
+                    class="btn-remove"
+                    (click)="removeInstruction(i)"
+                  >
+                    remove
+                  </button>
+                </div>
+              </div>
+              <button type="button" class="btn-add" (click)="addInstruction()">
+                Add more
+              </button>
+            </div>
+          </span>
+
+          <ng-template #addIns>
+            <button type="button" class="btn-add" (click)="addInstruction()">
+              Add Medication
+            </button>
+          </ng-template>
+        </section>
       </div>
     </div>
   </div>
-
-  <div class="doc-box" *ngIf="selectedTooth.length > 0">
-    <section class="fieldset">
-      <h1>Medication</h1>
-      <span *ngIf="MedControlls.length > 0; else addbutton">
-        <div class="med__form-box" formArrayName="medication">
-          <div
-            class="med__form-row"
-            *ngFor="let medform of MedControlls; let i = index"
-            [formGroupName]="i"
-          >
-            <div class="med__form-input">
-              <input
-                type="text"
-                placeholder="Add medicine"
-                formControlName="medicine"
-                name="medicine"
-              />
-
-              <button
-                class="btn-remove"
-                type="button"
-                (click)="removeMedication(i)"
-              >
-                Remove
-              </button>
-            </div>
-          </div>
-          <button type="button" class="btn-add" (click)="addMedication()">
-            Add more
-          </button>
-        </div>
-      </span>
-
-      <ng-template #addbutton>
-        <button type="button" class="btn-add" (click)="addMedication()">
-          Add Medication
-        </button>
-      </ng-template>
-    </section>
-
-    <section class="fieldset">
-      <h1>Instruction</h1>
-      <span *ngIf="Instruction.length > 0; else addIns">
-        <div class="med__form-box" formArrayName="instruction">
-          <div
-            class="med__form-row"
-            *ngFor="let medform of Instruction; let i = index"
-            [formGroupName]="i"
-          >
-            <div class="med__form-input">
-              <input
-                type="text"
-                formControlName="suggestion"
-                name="suggestion"
-                placeholder="Add instruction for patient"
-              />
-
-              <button
-                type="button"
-                class="btn-remove"
-                (click)="removeInstruction(i)"
-              >
-                remove
-              </button>
-            </div>
-          </div>
-          <button type="button" class="btn-add" (click)="addInstruction()">
-            Add more
-          </button>
-        </div>
-      </span>
-
-      <ng-template #addIns>
-        <button type="button" class="btn-add" (click)="addInstruction()">
-          Add Medication
-        </button>
-      </ng-template>
-    </section>
-    <button class="form__footer" type="submit" [disabled]="!rxForm.valid">
-      Submit
-    </button>
-  </div>
+  <button
+    class="form__footer"
+    type="submit"
+    [disabled]="!rxForm.valid"
+    [class.invalid]="!rxForm.valid"
+  >
+    Submit
+  </button>
 </form>
 
 <ng-template #message>

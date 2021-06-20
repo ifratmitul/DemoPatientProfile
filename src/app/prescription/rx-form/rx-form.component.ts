@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -41,7 +41,7 @@ export class RxFormComponent implements OnInit {
       patientData: new FormGroup({
         name: new FormControl(null, Validators.required),
         address: new FormControl(null, Validators.required),
-        age: new FormControl(null, Validators.required),
+        age: new FormControl(18, Validators.required),
       }),
       medication: new FormArray([]),
       problems: new FormArray([]),
@@ -63,13 +63,26 @@ export class RxFormComponent implements OnInit {
   setTooth(id: number) {
     if (!this.selectedTooth.includes(id)) {
       this.selectedTooth.push(id);
+
       (<FormArray>this.rxForm.get('problems')).push(
         new FormGroup({
-          specify: new FormControl(null, Validators.required),
+          specify: new FormArray([]),
           tooth: new FormControl(id, Validators.required),
         })
       );
     }
+  }
+
+  addIssue(i: number) {
+    (<FormArray>(
+      this.rxForm.get('problems').get(i.toString()).get('specify')
+    )).push(new FormControl());
+  }
+
+  removeIssue(i: number, j: number) {
+    (<FormArray>(
+      this.rxForm.get('problems').get(i.toString()).get('specify')
+    )).removeAt(j);
   }
 
   removeTooth(index: number, teethNo: number) {
@@ -83,8 +96,10 @@ export class RxFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.rxForm.value);
-    console.log(this.rxForm.get('patientData').value);
+    //console.log(this.rxForm.get('patientData').get('test'));
+    console.log(this.rxForm);
+    console.log(this.rxForm.get('problems').value);
+
     this.data.patientInfo = this.rxForm.get('patientData').value;
 
     let problemData: [] = this.rxForm.get('problems').value;
@@ -146,5 +161,11 @@ export class RxFormComponent implements OnInit {
   }
   get Instruction() {
     return (this.rxForm.get('instruction') as FormArray).controls;
+  }
+
+  getIssue(i: number) {
+    return (<FormArray>(
+      this.rxForm.get('problems').get(i.toString()).get('specify')
+    )).controls;
   }
 }
