@@ -3,20 +3,17 @@ import { PrescriptionComponent } from './prescription.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ShowcaseComponent } from './showcase/showcase.component';
+import { EditRxComponent } from './edit-rx/edit-rx.component';
 
 const routes: Routes = [
-  {path: '', component: PrescriptionComponent},
-  {path: 'show', component: ShowcaseComponent}
-
+  { path: '', component: PrescriptionComponent },
+  { path: ':id/edit', component: EditRxComponent },
+  { path: 'show', component: ShowcaseComponent },
 ];
-
 
 @NgModule({
   declarations: [],
-  imports: [
-    RouterModule.forChild(routes),
-    FormsModule
-  ],
-  exports: [RouterModule, FormsModule]
+  imports: [RouterModule.forChild(routes), FormsModule],
+  exports: [RouterModule, FormsModule],
 })
-export class RxRoutingModule { }
+export class RxRoutingModule {}

@@ -1,0 +1,105 @@
+.container {
+  max-width: 140rem;
+  margin: 8rem auto;
+  background-color: white;
+  min-height: 90rem;
+  border-radius: 1%;
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header {
+  font-size: 2rem;
+  text-align: center;
+  text-transform: capitalize;
+  color: gray;
+  border-bottom: 1px dotted #ccc;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5rem 0;
+  //border: 1px solid rgb(180, 180, 180);
+  width: 95%;
+  justify-content: space-around;
+  //align-content: stretch;
+}
+
+.left-panel {
+  flex: 1;
+  margin: 0.2rem;
+  font-size: 1.55rem;
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  border-right: 2px solid #ccc;
+
+  & > * {
+    height: 20rem;
+
+    h4 {
+      text-align: left;
+      text-transform: capitalize;
+      padding: 0 1.2rem;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #ccc;
+    }
+  }
+
+  .patient {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 1.5rem 0;
+    border-bottom: 1px solid #ccc;
+    font-weight: inherit;
+    height: auto !important;
+
+    &__info {
+      display: flex;
+      justify-content: center;
+
+      &__input {
+        padding: 1rem;
+        input {
+          height: 4.2rem;
+          border-radius: 3.5%;
+          border: 1px solid #ccc;
+          text-align: center;
+        }
+
+        input:focus {
+          border: 2px solid rgb(10, 148, 79);
+        }
+      }
+    }
+  }
+
+  .tooth {
+    display: flex;
+    flex-direction: column;
+
+    &__selector {
+    }
+  }
+}
+
+.right-panel {
+  background-color: rgb(240, 235, 226);
+  align-self: stretch;
+  flex: 1;
+  margin: 0.2rem;
+  font-size: 1.55rem;
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+}

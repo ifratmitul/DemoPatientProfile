@@ -7,9 +7,10 @@ import { SharedModule } from '../shared/shared.module';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { RxFormComponent } from './rx-form/rx-form.component';
 import { ToothStructureComponent } from './tooth-structure/tooth-structure.component';
+import { EditRxComponent } from './edit-rx/edit-rx.component';
 
 @NgModule({
-  declarations: [PrescriptionComponent, ShowcaseComponent, RxFormComponent, ToothStructureComponent],
+  declarations: [PrescriptionComponent, ShowcaseComponent, RxFormComponent, ToothStructureComponent, EditRxComponent],
   imports: [CommonModule, RxRoutingModule, SharedModule],
   exports: [PrescriptionComponent],
 })

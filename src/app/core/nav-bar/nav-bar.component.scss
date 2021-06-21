@@ -15,131 +15,126 @@
 //   --Shadow: 0 2rem 6rem rgba(0, 0, 0, 0.3);
 // }
 
-
 .header {
-    height: 8rem;
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items:center;
-    font-size: 1.4rem;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-   
+  height: 8rem;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  height: 6rem;
+  margin-left: 3rem;
+}
+
+.search {
+  flex: 0 0 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__input {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #f4f2f2;
+    border: none;
+    color: inherit;
+    padding: 0.7rem 2rem;
+    border-radius: 100px;
+    width: 80%;
+    transition: all 0.3s;
+    margin-right: -3.25rem;
+
+    &:focus {
+      outline: none;
+      width: 100%;
+      background-color: #f4f2f2;
+    }
+
+    &::-webkit-input-placeholder {
+      font-weight: 100;
+      color: #ccc;
+    }
   }
-  
-  .logo {
-    height: 6rem;
-    margin-left: 3rem;
+
+  &__input:focus + &__button {
+    background-color: transparent;
   }
-  
-  .search {
-    flex: 0 0 40%;
+
+  &__button {
+    border: none;
+    background-color: #f4f2f2;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      transform: translateY(0.3rem);
+    }
+  }
+  &__icon {
+    height: 2rem;
+    width: 2rem;
+    fill: #ccc;
+  }
+}
+
+.user-nav {
+  display: flex;
+  align-self: stretch;
+
+  align-items: center;
+
+  & > * {
+    padding: 0 2rem;
+    cursor: pointer;
+    height: 100%;
     display: flex;
     align-items: center;
+  }
+
+  & > *:hover {
+    background-color: #f4f2f2;
+    height: 100%;
+  }
+  &__icon-box {
+    position: relative;
+  }
+
+  &__icon {
+    height: 2.25rem;
+    width: 2.25rem;
+    fill: rgb(75, 72, 72);
+  }
+
+  &__notification {
+    font-size: 1.2rem;
+    height: 2rem;
+    width: 1.75rem;
+    border-radius: 50%;
+    background-color: #63bb8f;
+    position: absolute;
+    top: 1.7rem;
+    right: 1.1rem;
+    display: flex;
     justify-content: center;
-  
-    &__input {
-      font-family: inherit;
-      font-size: inherit;
-      background-color: #f4f2f2;
-      border: none;
-      color: inherit;
-      padding: 0.7rem 2rem;
-      border-radius: 100px;
-      width: 80%;
-      transition: all 0.3s;
-      margin-right: -3.25rem;
-  
-      &:focus {
-        outline: none;
-        width: 100%;
-        background-color: #f4f2f2;
-      }
-  
-      &::-webkit-input-placeholder {
-        font-weight: 100;
-        color: #ccc;
-      }
-    }
-  
-    &__input:focus + &__button {
-      background-color: transparent;
-    }
-  
-    &__button {
-      border: none;
-      background-color: #f4f2f2;
-  
-      &:focus {
-        outline: none;
-      }
-  
-      &:active {
-        transform: translateY(0.3rem);
-      }
-    }
-    &__icon {
-      height: 2rem;
-      width: 2rem;
-      fill: #ccc;
-
-    }
-  }
-  
-  .user-nav {
-    display: flex;
-    align-self: stretch;
-  
     align-items: center;
-  
-    & > * {
-      padding: 0 2rem;
-      cursor: pointer;
-      height: 100%;
-      display: flex;
-      align-items: center;
-    }
-  
-    & > *:hover {
-      background-color: #f4f2f2;
-      height: 100%;
-    }
-    &__icon-box {
-      position: relative;
-    }
-  
-    &__icon {
-      height: 2.25rem;
-      width: 2.25rem;
-      fill: rgb(75, 72, 72);
-    }
-  
-    &__notification {
-      font-size: 1.2rem;
-      height: 2rem;
-      width: 1.75rem;
-      border-radius: 50%;
-      background-color: #63bb8f;
-      position: absolute;
-      top: 1.7rem;
-      right: 1.1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: ivory;
-    }
-  
-    &__user-photo {
-      height: 6.95rem;
-      border-radius: 50%;
-      margin-left: 1rem;
-    }
-  
-    &__user-name 
-    {
-        margin-left: 1rem;
-        font-weight: bolder;
-    }
+    color: ivory;
   }
 
-  
+  &__user-photo {
+    height: 6.95rem;
+    border-radius: 50%;
+    margin-left: 1rem;
+  }
+
+  &__user-name {
+    margin-left: 1rem;
+    font-weight: bolder;
+  }
+}
