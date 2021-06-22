@@ -1,0 +1,54 @@
+<div class="container">
+  <h1 class="header">Your Prescription List</h1>
+
+  <a class="card" *ngFor="let item of cardData; let i = index">
+    <section class="card__left-panel">
+      <h4 class="card__id">Patient Name: {{ item["patientInfo"]["name"] }}</h4>
+      <div class="medication" *ngIf="item['medication']; else message">
+        <h4>Medication</h4>
+        <ul>
+          <li *ngFor="let medicine of item['medication']">
+            {{ medicine["medicine"] }}
+          </li>
+        </ul>
+      </div>
+      <ng-template #message>
+        <p
+          style="
+            margin: 0.25rem;
+            border-bottom: 1px dotted #ccc;
+            font-style: italic;
+            color: rgb(128, 123, 123);
+            display: inline-block;
+          "
+        >
+          No medication available in this prescription
+        </p>
+      </ng-template>
+    </section>
+
+    <section class="card__right-panel">
+      <div class="button-box">
+        <button
+          type="submit"
+          class="btn-preview"
+          (click)="previewData(item['key'])"
+        >
+          <svg>
+            <use xlink:href="assets/sprite.svg#icon-profile"></use>
+          </svg>
+          Preview
+        </button>
+      </div>
+
+      <div class="tooth-box">
+        <h4>Issue with Teeth</h4>
+        <ul>
+          <li *ngFor="let issue of item['problems']">
+            Tooth no - {{ issue["tooth"] }}
+          </li>
+        </ul>
+      </div>
+    </section>
+  </a>
+</div>

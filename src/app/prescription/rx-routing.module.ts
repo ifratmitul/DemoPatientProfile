@@ -4,11 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { EditRxComponent } from './edit-rx/edit-rx.component';
+import { OldRxComponent } from './old-rx/old-rx.component';
 
 const routes: Routes = [
   { path: '', component: PrescriptionComponent },
-  { path: ':id/edit', component: EditRxComponent },
   { path: 'show', component: ShowcaseComponent },
+  { path: 'oldrx', component: OldRxComponent },
+  { path: ':id/edit', component: EditRxComponent },
 ];
 
 @NgModule({

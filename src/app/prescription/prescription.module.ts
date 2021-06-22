@@ -8,9 +8,10 @@ import { ShowcaseComponent } from './showcase/showcase.component';
 import { RxFormComponent } from './rx-form/rx-form.component';
 import { ToothStructureComponent } from './tooth-structure/tooth-structure.component';
 import { EditRxComponent } from './edit-rx/edit-rx.component';
+import { OldRxComponent } from './old-rx/old-rx.component';
 
 @NgModule({
-  declarations: [PrescriptionComponent, ShowcaseComponent, RxFormComponent, ToothStructureComponent, EditRxComponent],
+  declarations: [PrescriptionComponent, ShowcaseComponent, RxFormComponent, ToothStructureComponent, EditRxComponent, OldRxComponent],
   imports: [CommonModule, RxRoutingModule, SharedModule],
   exports: [PrescriptionComponent],
 })

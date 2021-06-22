@@ -190,7 +190,9 @@
   <button
     class="form__footer"
     type="submit"
-    [disabled]="!rxForm.valid"
+    [disabled]="
+      !rxForm.valid && selectedTooth.length > 0 && MedControlls.length > 0
+    "
     [class.invalid]="!rxForm.valid"
   >
     Submit

@@ -1,0 +1,97 @@
+.container {
+  max-width: 110rem;
+  margin: 8rem auto;
+  background-color: white;
+  min-height: 90rem;
+
+  border-radius: 1%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-wrap: wrap;
+  //justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header {
+  font-size: 3rem;
+  text-transform: capitalize;
+  padding: 2rem;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.card {
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  font-size: 1.5rem;
+  padding: 1.25rem;
+  margin: 1.25rem 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  flex-wrap: wrap;
+
+  &:last-child {
+    margin-bottom: 5rem;
+  }
+  &__left-panel {
+    flex: 1;
+    border-right: 1px solid #ccc;
+    //background-color: paleturquoise;
+    .medication {
+      h4 {
+      }
+    }
+  }
+
+  &__id {
+    //background-color: palegreen;
+    text-transform: capitalize;
+  }
+
+  &__right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+
+    .btn-preview {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem;
+
+      border-radius: 4.5%;
+
+      border: none;
+      & > * {
+        padding: 0 0.25rem;
+      }
+      svg {
+        height: 2rem;
+        width: 2rem;
+      }
+
+      transition: all 0.3s;
+    }
+
+    .btn-preview:hover {
+      transform: translateY(-0.3rem);
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+    h4 {
+      text-align: center;
+      border-bottom: 1px dotted #ccc;
+    }
+
+    .button-box {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}

@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PrescriptionService {
   rxData = new BehaviorSubject<any>(null);
+  //firedata: any;
 
   constructor(private http: HttpClient) {}
 
@@ -30,17 +32,14 @@ export class PrescriptionService {
   }
 
   getOldRx() {
-    this.http
-      .get(
-        'https://jotno-demo-default-rtdb.asia-southeast1.firebasedatabase.app/rxdata.json'
-      )
-      .subscribe(
-        (res) => {
-          console.log(res);
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
+    return this.http.get(
+      'https://jotno-demo-default-rtdb.asia-southeast1.firebasedatabase.app/rxdata.json'
+    );
+  }
+
+  getShowCaseData(key: string) {
+    return this.http.get(
+      `https://jotno-demo-default-rtdb.asia-southeast1.firebasedatabase.app/rxdata/${key}.json`
+    );
   }
 }
