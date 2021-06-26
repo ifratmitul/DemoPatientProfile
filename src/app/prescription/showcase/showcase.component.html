@@ -1,21 +1,9 @@
 <div class="container">
-  <!-- <h2>hello</h2>
-  <ul *ngFor="let problem of problemData">
-    <li>Tooth: {{ problem["tooth"] }} {{ problem["specify"] }}</li>
-  </ul>
-  <hr />
-  <ul *ngFor="let problem of medicationData">
-    <li>{{ problem["medicine"] }}</li>
-  </ul>
-  <hr />
-  <ul *ngFor="let problem of instructionData">
-    <li>{{ problem["suggestion"] }}</li>
-  </ul> -->
   <div class="header">
     <h2>View Presciption</h2>
   </div>
   <div class="book">
-    <div class="page">
+    <div class="page" id="paper">
       <section class="subpage">
         <div class="doctor">
           <div class="doctor__header">
@@ -90,6 +78,7 @@
           </div>
         </div>
       </section>
+      <button type="button" (click)="createPDF()">Make PDF</button>
     </div>
   </div>
 </div>

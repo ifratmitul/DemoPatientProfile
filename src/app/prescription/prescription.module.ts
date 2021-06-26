@@ -11,7 +11,14 @@ import { EditRxComponent } from './edit-rx/edit-rx.component';
 import { OldRxComponent } from './old-rx/old-rx.component';
 
 @NgModule({
-  declarations: [PrescriptionComponent, ShowcaseComponent, RxFormComponent, ToothStructureComponent, EditRxComponent, OldRxComponent],
+  declarations: [
+    PrescriptionComponent,
+    ShowcaseComponent,
+    RxFormComponent,
+    ToothStructureComponent,
+    EditRxComponent,
+    OldRxComponent,
+  ],
   imports: [CommonModule, RxRoutingModule, SharedModule],
   exports: [PrescriptionComponent],
 })
