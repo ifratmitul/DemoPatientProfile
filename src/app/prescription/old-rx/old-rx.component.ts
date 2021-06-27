@@ -34,7 +34,7 @@ export class OldRxComponent implements OnInit {
   previewData(id) {
     console.log(id);
 
-    this.rxService.getShowCaseData(id);
+    //this.rxService.getShowCaseData(id);
     //let data = this.cardData[id];
     //console.log(data);
     //this.rxService.rxData.next(data);
