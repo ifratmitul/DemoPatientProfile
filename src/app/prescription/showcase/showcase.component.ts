@@ -96,7 +96,11 @@ export class ShowcaseComponent implements OnInit {
     var docDefinition = {
       pageSize: 'A4',
       pageMargins: 75.590551181,
-
+      watermark: {
+        text: 'Jotno',
+        color: '#00b871',
+        opacity: 0.2,
+      },
       content: [
         {
           margin: [0, 0, 0, 10],
@@ -108,6 +112,14 @@ export class ShowcaseComponent implements OnInit {
                 alignment: 'left',
                 fontSize: 20,
                 bold: true,
+                color: '#08386e',
+              },
+
+              {
+                text: 'Dhanmondi, Dhaka',
+                alignment: 'left',
+                fontSize: 10,
+                color: '#055a87',
               },
             ],
 
