@@ -40,4 +40,11 @@ export class OldRxComponent implements OnInit {
     //this.rxService.rxData.next(data);
     this.router.navigate(['rx/show'], { queryParams: { id: id } });
   }
+
+  deleteData(id: string) {
+    this.rxService.deleteRx(id).subscribe((res) => {
+      this.cardData = [];
+      this.getData();
+    });
+  }
 }

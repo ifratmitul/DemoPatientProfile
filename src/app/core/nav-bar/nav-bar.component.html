@@ -1,46 +1,42 @@
+<header class="header">
+  <img src="assets/jotnno_logo.png" alt="logo" class="logo" routerLink="/" />
+  <form action="#" class="search">
+    <input
+      type="text"
+      placeholder="Search for patient with phone number"
+      class="search__input"
+    />
 
-    <header class="header">
-        <img src="assets/jotnno_logo.png" alt="logo" class="logo" routerLink="/">
-        <form action="#" class="search">
-            <input type="text" placeholder="Search for patient with phone number" class="search__input">
+    <button class="search__button">
+      <svg class="search__icon">
+        <use xlink:href="assets/sprite.svg#icon-search"></use>
+      </svg>
+    </button>
+  </form>
 
-            <button class="search__button">
-                <svg class="search__icon">
-                    <use xlink:href="assets/sprite.svg#icon-search"></use>
-                </svg>
-            </button>
-        </form>
-    
-        <nav class="user-nav">
-            
-            <div class="user-nav__icon-box">
-                <svg class="user-nav__icon">
-                    <use xlink:href="assets/sprite.svg#icon-home"></use> 
-                </svg>
+  <nav class="user-nav">
+    <div class="user-nav__icon-box">
+      <svg class="user-nav__icon">
+        <use xlink:href="assets/sprite.svg#icon-home"></use>
+      </svg>
+    </div>
 
-            </div>
+    <div class="user-nav__icon-box">
+      <svg class="user-nav__icon">
+        <use xlink:href="assets/sprite.svg#icon-office"></use>
+      </svg>
+    </div>
 
+    <div class="user-nav__icon-box">
+      <svg class="user-nav__icon">
+        <use xlink:href="assets/sprite.svg#icon-users"></use>
+      </svg>
+      <span class="user-nav__notification">5</span>
+    </div>
 
-            <div class="user-nav__icon-box">
-                <svg class="user-nav__icon">
-                    <use xlink:href="assets/sprite.svg#icon-office"></use> 
-                </svg>
-
-            </div>
-
-            <div class="user-nav__icon-box">
-                <svg class="user-nav__icon">
-                    <use xlink:href="assets/sprite.svg#icon-users"></use> 
-                </svg>
-                <span class="user-nav__notification">5</span>
-            </div>
-
-        <div class="user-nav__user">
-            <img src="assets/svgs/user.png" alt="" class="user-nav__user-photo">
-            <span class="user-nav__user-name">Mitul</span>
-        </div>
-        </nav>
-    </header>
-
-
-    
+    <div class="user-nav__user">
+      <img src="assets/user.png" alt="" class="user-nav__user-photo" />
+      <span class="user-nav__user-name">Mitul</span>
+    </div>
+  </nav>
+</header>
